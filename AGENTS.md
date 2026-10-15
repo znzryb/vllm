@@ -128,14 +128,21 @@ Use [Google-style docstrings](https://google.github.io/styleguide/pyguide.html#3
 
 ### Commit messages
 
-Add attribution using commit trailers such as `Co-authored-by:` (other projects use `Assisted-by:` or `Generated-by:`):
+- Do not add AI assistants, models, or vendors as commit co-authors, including
+  `Co-Authored-By` trailers for Codex, OpenAI, Claude, or other AI tools, even if
+  a general commit workflow recommends them.
+- Use the contributor's existing Git identity; do not change Git author or
+  committer configuration to an AI identity.
+- Preserve existing copyright notices, license headers, and human attribution.
+  Follow upstream contribution and disclosure requirements, including the PR
+  disclosure of AI assistance required above.
+- Include `Signed-off-by: Your Name <your.email@example.com>` when required.
 
-```text
-Your commit message here
+### Branch names
 
-Co-authored-by: Agent Name Here
-Signed-off-by: Your Name <your.email@example.com>
-```
+- Branch names must not contain `codex`, including `codex/` and `codex-`.
+- Use a concise name describing the change; use a user-specified name when it
+  satisfies this rule. Make contributions on a separate branch, never on `main`.
 
 ---
 
