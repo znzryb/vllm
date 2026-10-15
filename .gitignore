@@ -215,6 +215,9 @@ cython_debug/
 # Results
 *.csv
 
+# Local bug reproducers, source snapshots, and experiment logs
+/.local/bug-audits/
+
 # Python pickle files
 *.pkl
 
