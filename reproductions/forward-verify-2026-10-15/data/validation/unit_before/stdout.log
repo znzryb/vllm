@@ -1,0 +1,82 @@
+..FF                                                                     [100%]
+=================================== FAILURES ===================================
+________________ test_bench_forward_rejects_oversized_verify[0] ________________
+
+capacity = 0
+
+    @pytest.mark.parametrize("capacity", [0, 2])
+    def test_bench_forward_rejects_oversized_verify(capacity):
+        """Reject drafts beyond the runner's buffer before launching CUDA kernels."""
+        runner = SimpleNamespace(num_speculative_steps=capacity)
+        case = parse_case("verify=2*4@64:3")
+        with pytest.raises(
+            ValueError,
+            match=rf"Case 'verify' needs 3 draft tokens.*supports {capacity}",
+        ):
+>           run_case(runner, case, SimpleNamespace())
+
+/audit-tests/benchmarks/test_forward_cli.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+runner = namespace(num_speculative_steps=0)
+case = BenchCase(name='verify', requests=(BenchRequest(query_len=4, kv_len=64, num_draft_tokens=3, chunked=False), BenchRequest(query_len=4, kv_len=64, num_draft_tokens=3, chunked=False)))
+args = namespace()
+
+    def run_case(runner, case: BenchCase, args: argparse.Namespace) -> dict[str, Any]:
+        from vllm.benchmarks.forward.batch import build_batch
+        from vllm.benchmarks.forward.capture import ForwardBench
+        from vllm.benchmarks.forward.kv_init import touched_kv_views, zero_kv_blocks
+        from vllm.benchmarks.forward.routing import install_routing
+    
+>       context = runner.vllm_config.compilation_config.static_forward_context
+                  ^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'vllm_config'
+
+/audit-src/vllm/benchmarks/forward/main.py:128: AttributeError
+________________ test_bench_forward_rejects_oversized_verify[2] ________________
+
+capacity = 2
+
+    @pytest.mark.parametrize("capacity", [0, 2])
+    def test_bench_forward_rejects_oversized_verify(capacity):
+        """Reject drafts beyond the runner's buffer before launching CUDA kernels."""
+        runner = SimpleNamespace(num_speculative_steps=capacity)
+        case = parse_case("verify=2*4@64:3")
+        with pytest.raises(
+            ValueError,
+            match=rf"Case 'verify' needs 3 draft tokens.*supports {capacity}",
+        ):
+>           run_case(runner, case, SimpleNamespace())
+
+/audit-tests/benchmarks/test_forward_cli.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+runner = namespace(num_speculative_steps=2)
+case = BenchCase(name='verify', requests=(BenchRequest(query_len=4, kv_len=64, num_draft_tokens=3, chunked=False), BenchRequest(query_len=4, kv_len=64, num_draft_tokens=3, chunked=False)))
+args = namespace()
+
+    def run_case(runner, case: BenchCase, args: argparse.Namespace) -> dict[str, Any]:
+        from vllm.benchmarks.forward.batch import build_batch
+        from vllm.benchmarks.forward.capture import ForwardBench
+        from vllm.benchmarks.forward.kv_init import touched_kv_views, zero_kv_blocks
+        from vllm.benchmarks.forward.routing import install_routing
+    
+>       context = runner.vllm_config.compilation_config.static_forward_context
+                  ^^^^^^^^^^^^^^^^^^
+E       AttributeError: 'types.SimpleNamespace' object has no attribute 'vllm_config'
+
+/audit-src/vllm/benchmarks/forward/main.py:128: AttributeError
+=============================== warnings summary ===============================
+../audit-tests/benchmarks/test_forward_cli.py:100
+  /audit-tests/benchmarks/test_forward_cli.py:100: PytestUnknownMarkWarning: Unknown pytest.mark.benchmark - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.benchmark
+
+test_forward_cli.py: 14 warnings
+  /usr/local/lib/python3.12/dist-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../audit-tests/benchmarks/test_forward_cli.py::test_bench_forward_rejects_oversized_verify[0]
+FAILED ../audit-tests/benchmarks/test_forward_cli.py::test_bench_forward_rejects_oversized_verify[2]
+2 failed, 2 passed, 1 deselected, 15 warnings in 24.88s

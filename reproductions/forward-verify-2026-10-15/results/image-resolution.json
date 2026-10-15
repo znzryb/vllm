@@ -1,0 +1,7 @@
+{
+  "tag": "vllm/vllm-openai:nightly-77154ca6116ae34cbfe314beef1016bde9b63989",
+  "index_digest": "sha256:a7deff2c216def98c193352aca50fb03a2ee29231355b3033dc3789009f6d23e",
+  "amd64_digest": "sha256:4d42798d27104deb507639250e7b8ad6b0250f97c3d4276038ee2fb7ac9e367e",
+  "config_digest": "sha256:e04dfa99f91d1ba534c9fc39ebfcbf4cc85c2b788fca74543b4d24ce68e8328c",
+  "expected_tested_config": "sha256:992563a6b2fadbe10716ff99c46bdd502d33939b810f31cad8acf7b4419e87d2"
+}

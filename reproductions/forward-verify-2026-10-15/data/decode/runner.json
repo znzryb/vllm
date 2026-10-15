@@ -1,0 +1,11 @@
+{
+  "case": "decode",
+  "num_speculative_steps": 0,
+  "decode_query_len": 1,
+  "draft_tokens_shape": [
+    4,
+    0
+  ],
+  "draft_tokens_data_ptr": 0,
+  "model_config_revision": null
+}

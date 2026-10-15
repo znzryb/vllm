@@ -1,0 +1,18 @@
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/audit-driver.py", line 80, in <module>
+[rank0]:     main()
+[rank0]:   File "/audit-driver.py", line 76, in main
+[rank0]:     cli_main()
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/main.py", line 120, in main
+[rank0]:     args.dispatch_function(args)
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/benchmark/forward.py", line 22, in cmd
+[rank0]:     main(args)
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 202, in main
+[rank0]:     result = run_case(runner, case, args)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-driver.py", line 67, in record_runner
+[rank0]:     return run_case(runner, case, args)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 125, in run_case
+[rank0]:     raise ValueError(
+[rank0]: ValueError: Case 'patched_verify_rejected' needs 3 draft tokens per request, but the runner supports 0. Set --speculative-config with a sufficient num_speculative_tokens.

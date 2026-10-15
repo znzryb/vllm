@@ -1,0 +1,219 @@
+✓ Initialized. View run at 
+https://modal.com/apps/znzryb34/main/ap-vy3yD1L7amx33NUpyv0AlW
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/reproductions/forward-verify-2026-10-15/mod
+│   al_forward.py
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/reproductions/forward-verify-2026-10-15/val
+│   idate_modal.py
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/reproductions/forward-verify-2026-10-15/cap
+│   ture_driver.py
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/reproductions/forward-verify-2026-10-15/fix
+│   .patch
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/reproductions/forward-verify-2026-10-15/tes
+│   t_forward_cli.py
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/.local/bug-audits/forward-verify/upstream/v
+│   llm
+├── ✓ Created Function reproduce.
+└── ✓ Created Function validate.
+{"name": "unit_before", "command": ["/usr/local/bin/python", "-m", "pytest", "--confcutdir=/audit-tests/benchmarks", "/audit-tests/benchmarks/test_forward_cli.py", "-q", "-k", "not test_bench_forward or rejects_oversized_verify"], "returncode": 1, "elapsed_s": 28.570558392000002}
+{"name": "apply_patch", "command": ["patch", "--batch", "-p1", "-d", "/audit-src", "-i", "/audit-fix.patch"], "returncode": 0, "elapsed_s": 0.010647603000002448}
+{"name": "unit_after", "command": ["/usr/local/bin/python", "-m", "pytest", "--confcutdir=/audit-tests/benchmarks", "/audit-tests/benchmarks/test_forward_cli.py", "-q", "-k", "not test_bench_forward or rejects_oversized_verify"], "returncode": 0, "elapsed_s": 16.973370897000002}
+
+[1AFetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+[1AFetching 10 files:  10%|█         | 1/10 [00:00<00:01,  7.95it/s]
+[1AFetching 10 files:  60%|██████    | 6/10 [00:00<00:00, 30.20it/s]
+[1AFetching 10 files: 100%|██████████| 10/10 [00:03<00:00,  2.23it/s]Fetching 10 files: 100%|██████████| 10/10 [00:03<00:00,  2.71it/s]
+{"name": "patched_verify_rejected", "command": ["/usr/local/bin/python", "/audit-driver.py", "bench", "forward", "--model", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--tokenizer", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--load-format", "sharded_state", "--seed", "0", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "patched_verify_rejected=2*4@64:3", "--output-json", "/validation/patched_verify_rejected/output.json"], "returncode": 1, "elapsed_s": 65.82671889899999}
+{"name": "patched_decode", "command": ["/usr/local/bin/python", "/audit-driver.py", "bench", "forward", "--model", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--tokenizer", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--load-format", "sharded_state", "--seed", "0", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "patched_decode=2*1@64", "--output-json", "/validation/patched_decode/output.json"], "returncode": 0, "elapsed_s": 40.58262084500001}
+{"name": "patched_verify_configured", "command": ["/usr/local/bin/python", "/audit-driver.py", "bench", "forward", "--model", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--tokenizer", "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357", "--load-format", "sharded_state", "--seed", "0", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "patched_verify_configured=2*4@64:3", "--output-json", "/validation/patched_verify_configured/output.json", "--speculative-config", "{\"method\": \"ngram_gpu\", \"num_speculative_tokens\": 3}"], "returncode": 0, "elapsed_s": 69.08552006}
+{
+  "source_commit": "c5f8adc0b1944b9142a31d85cfbc6a61973d0b3a",
+  "runtime_image": "vllm/vllm-openai@sha256:4d42798d27104deb507639250e7b8ad6b0250f97c3d4276038ee2fb7ac9e367e",
+  "compiled_runtime_version": "0.32.0rc1.dev100+g77154ca61",
+  "torch": "2.13.0+cu130",
+  "gpu": "NVIDIA L4",
+  "model_repo": "znzryb/qwen3-0.6b-dummy-forward-repro",
+  "model_revision": "4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+  "runs": [
+    {
+      "name": "unit_before",
+      "command": [
+        "/usr/local/bin/python",
+        "-m",
+        "pytest",
+        "--confcutdir=/audit-tests/benchmarks",
+        "/audit-tests/benchmarks/test_forward_cli.py",
+        "-q",
+        "-k",
+        "not test_bench_forward or rejects_oversized_verify"
+      ],
+      "returncode": 1,
+      "elapsed_s": 28.570558392000002
+    },
+    {
+      "name": "apply_patch",
+      "command": [
+        "patch",
+        "--batch",
+        "-p1",
+        "-d",
+        "/audit-src",
+        "-i",
+        "/audit-fix.patch"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.010647603000002448
+    },
+    {
+      "name": "unit_after",
+      "command": [
+        "/usr/local/bin/python",
+        "-m",
+        "pytest",
+        "--confcutdir=/audit-tests/benchmarks",
+        "/audit-tests/benchmarks/test_forward_cli.py",
+        "-q",
+        "-k",
+        "not test_bench_forward or rejects_oversized_verify"
+      ],
+      "returncode": 0,
+      "elapsed_s": 16.973370897000002
+    },
+    {
+      "name": "patched_verify_rejected",
+      "command": [
+        "/usr/local/bin/python",
+        "/audit-driver.py",
+        "bench",
+        "forward",
+        "--model",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--tokenizer",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--load-format",
+        "sharded_state",
+        "--seed",
+        "0",
+        "--max-model-len",
+        "512",
+        "--max-num-batched-tokens",
+        "128",
+        "--max-num-seqs",
+        "4",
+        "--gpu-memory-utilization",
+        "0.4",
+        "--kv-len-jitter",
+        "0",
+        "--routing",
+        "real",
+        "--iters",
+        "2",
+        "--samples",
+        "2",
+        "--case",
+        "patched_verify_rejected=2*4@64:3",
+        "--output-json",
+        "/validation/patched_verify_rejected/output.json"
+      ],
+      "returncode": 1,
+      "elapsed_s": 65.82671889899999
+    },
+    {
+      "name": "patched_decode",
+      "command": [
+        "/usr/local/bin/python",
+        "/audit-driver.py",
+        "bench",
+        "forward",
+        "--model",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--tokenizer",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--load-format",
+        "sharded_state",
+        "--seed",
+        "0",
+        "--max-model-len",
+        "512",
+        "--max-num-batched-tokens",
+        "128",
+        "--max-num-seqs",
+        "4",
+        "--gpu-memory-utilization",
+        "0.4",
+        "--kv-len-jitter",
+        "0",
+        "--routing",
+        "real",
+        "--iters",
+        "2",
+        "--samples",
+        "2",
+        "--case",
+        "patched_decode=2*1@64",
+        "--output-json",
+        "/validation/patched_decode/output.json"
+      ],
+      "returncode": 0,
+      "elapsed_s": 40.58262084500001
+    },
+    {
+      "name": "patched_verify_configured",
+      "command": [
+        "/usr/local/bin/python",
+        "/audit-driver.py",
+        "bench",
+        "forward",
+        "--model",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--tokenizer",
+        "/root/.cache/huggingface/hub/models--znzryb--qwen3-0.6b-dummy-forward-repro/snapshots/4bae0ac45199180f8d59d05bb3b6cc1b19c58357",
+        "--load-format",
+        "sharded_state",
+        "--seed",
+        "0",
+        "--max-model-len",
+        "512",
+        "--max-num-batched-tokens",
+        "128",
+        "--max-num-seqs",
+        "4",
+        "--gpu-memory-utilization",
+        "0.4",
+        "--kv-len-jitter",
+        "0",
+        "--routing",
+        "real",
+        "--iters",
+        "2",
+        "--samples",
+        "2",
+        "--case",
+        "patched_verify_configured=2*4@64:3",
+        "--output-json",
+        "/validation/patched_verify_configured/output.json",
+        "--speculative-config",
+        "{\"method\": \"ngram_gpu\", \"num_speculative_tokens\": 3}"
+      ],
+      "returncode": 0,
+      "elapsed_s": 69.08552006
+    }
+  ],
+  "unit_red_green": true,
+  "patched_source_sha256": "5290d003857bcf1e45893f23fd6b442fe2d9a974446e22e5f1be50a64fe07fe4",
+  "clean_rejection": true,
+  "patched_decode_passed": true,
+  "patched_verify_configured_passed": true,
+  "dataset_commit": "239159c4fdaaf568fe9c00153cbfbf57ab1bf8bc"
+}
+Saved /Users/zzy/Documents/GitHub/vllm/.local/bug-audits/forward-verify/validation-20261015T070725895564Z.json
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/znzryb34/main/ap-vy3yD1L7amx33NUpyv0AlW

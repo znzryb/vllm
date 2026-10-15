@@ -1,0 +1,66 @@
+
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1165.05it/s]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/audit-driver.py", line 69, in <module>
+[rank0]:     main()
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/main.py", line 120, in main
+[rank0]:     args.dispatch_function(args)
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/benchmark/forward.py", line 22, in cmd
+[rank0]:     main(args)
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 194, in main
+[rank0]:     result = run_case(runner, case, args)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-driver.py", line 61, in record_runner
+[rank0]:     return run_case(runner, case, args)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 154, in run_case
+[rank0]:     result = bench.run()
+[rank0]:              ^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 86, in run
+[rank0]:     runner.execute_model(self.batch.scheduler_output)
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu/model_runner.py", line 2047, in execute_model
+[rank0]:     model_output = self.model(**model_inputs)
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 94, in _forward
+[rank0]:     self._write_input_ids(self._input_batch, inputs["input_ids"])
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 138, in _write_input_ids
+[rank0]:     input_ids[: len(ids)].copy_(torch.from_numpy(ids))
+[rank0]: torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+[rank0]: Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/usr/lib/python3.12/weakref.py", line 666, in _exitfunc
+[rank0]:     f()
+[rank0]:   File "/usr/lib/python3.12/weakref.py", line 590, in __call__
+[rank0]:     return info.func(*info.args, **(info.kwargs or {}))
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/v1/engine/core.py", line 828, in shutdown
+[rank0]:     self.model_executor.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/executor/uniproc_executor.py", line 154, in shutdown
+[rank0]:     worker.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/worker_base.py", line 258, in shutdown
+[rank0]:     self.worker.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu_worker.py", line 1620, in shutdown
+[rank0]:     model_runner.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu/model_runner.py", line 2343, in shutdown
+[rank0]:     torch.accelerator.synchronize()
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/accelerator/__init__.py", line 270, in synchronize
+[rank0]:     torch._C._accelerator_synchronizeDevice(device_index)
+[rank0]: torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+[rank0]: Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[rank0]:[W1015 06:51:32.717638791 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

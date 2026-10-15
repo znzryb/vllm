@@ -218,6 +218,9 @@ cython_debug/
 # Local bug reproducers, source snapshots, and experiment logs
 /.local/bug-audits/
 
+# Preserve raw text logs in the public reproduction archive
+!/reproductions/forward-verify-2026-10-15/**/*.log
+
 # Python pickle files
 *.pkl
 

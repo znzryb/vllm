@@ -1,0 +1,11 @@
+{
+  "case": "patched_verify_configured",
+  "num_speculative_steps": 3,
+  "decode_query_len": 4,
+  "draft_tokens_shape": [
+    4,
+    3
+  ],
+  "draft_tokens_data_ptr": 47758987765248,
+  "model_config_revision": null
+}

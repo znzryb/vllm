@@ -1,0 +1,8 @@
+....                                                                     [100%]
+=============================== warnings summary ===============================
+../audit-tests/benchmarks/test_forward_cli.py:100
+  /audit-tests/benchmarks/test_forward_cli.py:100: PytestUnknownMarkWarning: Unknown pytest.mark.benchmark - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.benchmark
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4 passed, 1 deselected, 1 warning in 14.13s

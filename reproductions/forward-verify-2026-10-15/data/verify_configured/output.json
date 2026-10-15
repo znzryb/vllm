@@ -1,0 +1,59 @@
+[
+  {
+    "case": "verify_configured",
+    "requests": [
+      {
+        "query_len": 4,
+        "kv_len": 64,
+        "num_draft_tokens": 3,
+        "chunked": false
+      },
+      {
+        "query_len": 4,
+        "kv_len": 64,
+        "num_draft_tokens": 3,
+        "chunked": false
+      }
+    ],
+    "median_us": 4593.15234375,
+    "ranks": [
+      {
+        "num_tokens": 8,
+        "kv_blocks": 9,
+        "routing": "real",
+        "num_tokens_after_padding": 8,
+        "batch_order": [
+          "bench-0",
+          "bench-1"
+        ],
+        "eager_repeat": {
+          "max_abs": 0.0,
+          "relative_rms": 0.0
+        },
+        "graph_vs_eager": {
+          "max_abs": 0.0,
+          "relative_rms": 0.0
+        },
+        "graph_deterministic": true,
+        "finite": true,
+        "state_reset_bytes": 11010048,
+        "latency_us": {
+          "timer": "graph_events",
+          "median": 4593.15234375,
+          "sample_spread_pct": 0.1560577154159546,
+          "mean": 4592.1279296875,
+          "std": 4.830378532409668,
+          "min": 4584.44775390625,
+          "p90": 4596.53125,
+          "count": 4,
+          "samples_us": [
+            4593.66,
+            4597.76,
+            4592.64,
+            4584.45
+          ]
+        }
+      }
+    ]
+  }
+]

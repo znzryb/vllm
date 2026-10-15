@@ -1,0 +1,10 @@
+
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1400.80it/s]
+
+JIT kernel warmup (88 compile keys):   0%|          | 0/4 [00:00<?, ?kernel/s]
+JIT kernel warmup (88 compile keys):  25%|██▌       | 1/4 [00:10<00:31, 10.65s/kernel, _DecoratedTritonJitKernel (8 keys)]
+JIT kernel warmup (88 compile keys):  50%|█████     | 2/4 [00:12<00:10,  5.31s/kernel, _DecoratedTritonJitKernel (20 keys)]
+JIT kernel warmup (88 compile keys):  75%|███████▌  | 3/4 [00:20<00:06,  6.87s/kernel, _DecoratedTritonJitKernel (40 keys)]
+JIT kernel warmup (88 compile keys): 100%|██████████| 4/4 [00:27<00:00,  6.67s/kernel, _DecoratedTritonJitKernel (20 keys)]
+JIT kernel warmup (88 compile keys): 100%|██████████| 4/4 [00:27<00:00,  6.83s/kernel, _DecoratedTritonJitKernel (20 keys)]

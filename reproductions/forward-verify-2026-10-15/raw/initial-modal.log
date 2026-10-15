@@ -1,0 +1,103 @@
+✓ Initialized. View run at 
+https://modal.com/apps/znzryb34/main/ap-p2dCj50zgPCLjEjkgFzP5f
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/.local/bug-audits/forward-verify/modal_forw
+│   ard.py
+├── ✓ Uploaded 
+│   /Users/zzy/Documents/GitHub/vllm/.local/bug-audits/forward-verify/upstream/v
+│   llm
+└── ✓ Created Function reproduce.
+decode {"name": "decode", "command": ["/usr/local/bin/python", "-m", "vllm.entrypoints.cli.main", "bench", "forward", "--model", "Qwen/Qwen3-0.6B", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "decode=2*1@64", "--output-json", "/tmp/decode.json"], "returncode": 0, "elapsed_s": 80.605778234, "output": [{"case": "decode", "requests": [{"query_len": 1, "kv_len": 64, "num_draft_tokens": 0, "chunked": false}, {"query_len": 1, "kv_len": 64, "num_draft_tokens": 0, "chunked": false}], "median_us": 4515.83984375, "ranks": [{"num_tokens": 2, "kv_blocks": 9, "routing": "real", "num_tokens_after_padding": 2, "batch_order": ["bench-0", "bench-1"], "eager_repeat": {"max_abs": 0.0, "relative_rms": 0.0}, "graph_vs_eager": {"max_abs": 0.0, "relative_rms": 0.0}, "graph_deterministic": true, "finite": true, "state_reset_bytes": 11010048, "latency_us": {"timer": "graph_events", "median": 4515.83984375, "sample_spread_pct": 0.011331641115248203, "mean": 4515.583984375, "std": 1.1157972812652588, "min": 4513.7919921875, "p90": 4516.556640625, "count": 4, "samples_us": [4515.84, 4515.84, 4516.86, 4513.79]}}]}]}
+[gpu-health] [WARN] GPU-f4eb60ba-5094-daf3-d3df-7639852d2a64: XID: NVRM: Xid (PCI:0000:80:02): 31, pid=1286804, name=gvisor_sentry, channel 0x00000002, intr 00000000. MMU Fault: ENGINE GRAPHICS GPC2 GPCCLIENT_T1_0 faulted @ 0x0_00000000. Fault is of type FAULT_PDE ACCESS_TYPE_VIRT_READ
+
+verify {"name": "verify", "command": ["/usr/local/bin/python", "-m", "vllm.entrypoints.cli.main", "bench", "forward", "--model", "Qwen/Qwen3-0.6B", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "verify=2*4@64:3", "--output-json", "/tmp/verify.json"], "returncode": 1, "elapsed_s": 44.527293271000005}
+verify_configured {"name": "verify_configured", "command": ["/usr/local/bin/python", "-m", "vllm.entrypoints.cli.main", "bench", "forward", "--model", "Qwen/Qwen3-0.6B", "--max-model-len", "512", "--max-num-batched-tokens", "128", "--max-num-seqs", "4", "--gpu-memory-utilization", "0.4", "--kv-len-jitter", "0", "--routing", "real", "--iters", "2", "--samples", "2", "--case", "verify_configured=2*4@64:3", "--output-json", "/tmp/verify_configured.json", "--speculative-config", "{\"method\":\"ngram_gpu\",\"num_speculative_tokens\":3}"], "returncode": 0, "elapsed_s": 78.099639588, "output": [{"case": "verify_configured", "requests": [{"query_len": 4, "kv_len": 64, "num_draft_tokens": 3, "chunked": false}, {"query_len": 4, "kv_len": 64, "num_draft_tokens": 3, "chunked": false}], "median_us": 4507.1357421875, "ranks": [{"num_tokens": 8, "kv_blocks": 9, "routing": "real", "num_tokens_after_padding": 8, "batch_order": ["bench-0", "bench-1"], "eager_repeat": {"max_abs": 0.0, "relative_rms": 0.0}, "graph_vs_eager": {"max_abs": 0.0, "relative_rms": 0.0}, "graph_deterministic": true, "finite": true, "state_reset_bytes": 11010048, "latency_us": {"timer": "graph_events", "median": 4507.1357421875, "sample_spread_pct": 0.11358941346406937, "mean": 4507.1357421875, "std": 2.559814453125, "min": 4504.576171875, "p90": 4509.69580078125, "count": 4, "samples_us": [4509.7, 4509.7, 4504.58, 4504.58]}}]}]}
+Saved /Users/zzy/Documents/GitHub/vllm/.local/bug-audits/forward-verify/modal-forward-result-generated.json
+decode returncode= 0 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files:  22%|██▏       | 2/9 [00:00<00:00, 15.64it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00,  9.50it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00,  9.74it/s]
+
+verify returncode= 1 
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1221.64it/s]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/main.py", line 126, in <module>
+[rank0]:     main()
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/main.py", line 120, in main
+[rank0]:     args.dispatch_function(args)
+[rank0]:   File "/audit-src/vllm/entrypoints/cli/benchmark/forward.py", line 22, in cmd
+[rank0]:     main(args)
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 194, in main
+[rank0]:     result = run_case(runner, case, args)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/main.py", line 154, in run_case
+[rank0]:     result = bench.run()
+[rank0]:              ^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 86, in run
+[rank0]:     runner.execute_model(self.batch.scheduler_output)
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu/model_runner.py", line 2047, in execute_model
+[rank0]:     model_output = self.model(**model_inputs)
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 94, in _forward
+[rank0]:     self._write_input_ids(self._input_batch, inputs["input_ids"])
+[rank0]:   File "/audit-src/vllm/benchmarks/forward/capture.py", line 138, in _write_input_ids
+[rank0]:     input_ids[: len(ids)].copy_(torch.from_numpy(ids))
+[rank0]: torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+[rank0]: Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/usr/lib/python3.12/weakref.py", line 666, in _exitfunc
+[rank0]:     f()
+[rank0]:   File "/usr/lib/python3.12/weakref.py", line 590, in __call__
+[rank0]:     return info.func(*info.args, **(info.kwargs or {}))
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/audit-src/vllm/v1/engine/core.py", line 828, in shutdown
+[rank0]:     self.model_executor.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/executor/uniproc_executor.py", line 154, in shutdown
+[rank0]:     worker.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/worker_base.py", line 258, in shutdown
+[rank0]:     self.worker.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu_worker.py", line 1620, in shutdown
+[rank0]:     model_runner.shutdown()
+[rank0]:   File "/audit-src/vllm/v1/worker/gpu/model_runner.py", line 2343, in shutdown
+[rank0]:     torch.accelerator.synchronize()
+[rank0]:   File "/usr/local/lib/python3.12/dist-packages/torch/accelerator/__init__.py", line 270, in synchronize
+[rank0]:     torch._C._accelerator_synchronizeDevice(device_index)
+[rank0]: torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+[rank0]: Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+[rank0]: CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+[rank0]: For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+[rank0]:[W1015 06:33:56.807340848 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+verify_configured returncode= 0 
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]
+Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 1159.86it/s]
+
+JIT kernel warmup (88 compile keys):   0%|          | 0/4 [00:00<?, ?kernel/s]
+JIT kernel warmup (88 compile keys):  25%|██▌       | 1/4 [00:10<00:31, 10.43s/kernel, _DecoratedTritonJitKernel (8 keys)]
+JIT kernel warmup (88 compile keys):  50%|█████     | 2/4 [00:11<00:10,  5.18s/kernel, _DecoratedTritonJitKernel (20 keys)]
+JIT kernel warmup (88 compile keys):  75%|███████▌  | 3/4 [00:20<00:06,  6.92s/kernel, _DecoratedTritonJitKernel (40 keys)]
+JIT kernel warmup (88 compile keys): 100%|██████████| 4/4 [00:27<00:00,  6.74s/kernel, _DecoratedTritonJitKernel (20 keys)]
+JIT kernel warmup (88 compile keys): 100%|██████████| 4/4 [00:27<00:00,  6.85s/kernel, _DecoratedTritonJitKernel (20 keys)]
+
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/znzryb34/main/ap-p2dCj50zgPCLjEjkgFzP5f
